@@ -36,7 +36,7 @@ for ((i=0; i<${#ports[@]}; i++)); do
     printf "+------------------------------------------------------+\n"
     
     # 执行masscan扫描，并将结果输出到指定文件
-    masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --max-retries 3 --max-rate 40000
+    masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --max-retries 3 --min-parallelism 5 --max-parallelism 50 --max-rate 40000
 
     # 等待masscan进程结束
     while true; do
