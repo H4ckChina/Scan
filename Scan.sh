@@ -36,7 +36,6 @@ for ((i=0; i<${#ports[@]}; i++)); do
     printf "+------------------------------------------------------+\n"
     
     # 执行masscan扫描，并将结果输出到指定文件
-    # masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --max-retries 2 --max-rate 50000
     masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --max-rate 20000
     # 等待masscan进程结束
     while true; do
@@ -50,3 +49,4 @@ for ((i=0; i<${#ports[@]}; i++)); do
     # 扫描完成后，过滤结果文件，只保留IP地址
     awk '{print $4}' /root/Scan/$port.txt | sed '/^$/d' > /root/Scan/$port.tmp && mv /root/Scan/$port.tmp /root/Scan/$port.txt
 done
+    # masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --max-retries 2 --max-rate 50000
