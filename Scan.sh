@@ -49,4 +49,4 @@ for ((i=0; i<${#ports[@]}; i++)); do
     # 扫描完成后，过滤结果文件，只保留IP地址
     awk '{print $4}' /root/Scan/$port.txt | sed '/^$/d' | sort -u > /root/Scan/$port.tmp && mv /root/Scan/$port.tmp /root/Scan/$port.txt
 done
-    # masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --wait 3 --max-retries 3 --max-rate 80000
+    # masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --wait 6 --retries 2 --connection-timeout 3 --tcp-flags fin --rate-control --max-rate 200000
