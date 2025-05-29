@@ -17,7 +17,7 @@ trap 'handle_sigint' SIGINT
 stty intr ^x
 
 # 读取port.txt文件中的端口号
-IFS=$'\n' read -r -a ports < port.txt
+IFS=$'\n' read -d '' -r -a ports < port.txt
 
 # 循环执行masscan
 for ((i=0; i<${#ports[@]}; i++)); do
