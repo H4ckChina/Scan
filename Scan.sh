@@ -36,7 +36,7 @@ for ((i=0; i<${#ports[@]}; i++)); do
     printf "+------------------------------------------------------+\n"
     
     # 执行masscan扫描，并将结果输出到指定文件
-    masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --wait 3 --timeout 3 --randomize-hosts --open-only --rate 100000
+    masscan -p$port -iL /root/Scan/ips.txt -oL /root/Scan/$port.txt --wait 3 --connection-timeout 3 --randomize-hosts --open-only --max-rate 100000
     # 等待masscan进程结束
     while true; do
         if pgrep masscan > /dev/null; then
